@@ -1,0 +1,3 @@
+.form-check:not(.form-switch) .form-check-input[type=checkbox]{
+    background-size: unset!important;
+}

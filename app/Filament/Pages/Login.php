@@ -39,6 +39,13 @@ class Login extends BasePage
                 'data.email' => 'Email atau password yang anda masukkan salah',
             ]);
         } 
+
+        if($user->role != 'admin'){
+            Filament::auth()->logout();
+            throw ValidationException::withMessages([
+                'data.email' => 'Akses ditolak',
+            ]);
+        }
         // elseif ( $user->status === 'suspended' ) {
         //     Filament::auth()->logout();
  

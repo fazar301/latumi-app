@@ -2,6 +2,6 @@
 
 @if ($status)
     <div {{ $attributes->merge(['class' => 'font-medium text-sm text-green-600 dark:text-green-400']) }}>
-        {{ $status }}
+        {{ $status == 'passwords.sent' ? 'Silahkan cek email anda untuk mereset password' : $status }}
     </div>
 @endif

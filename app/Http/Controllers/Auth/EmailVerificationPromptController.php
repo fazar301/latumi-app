@@ -14,6 +14,10 @@ class EmailVerificationPromptController extends Controller
      */
     public function __invoke(Request $request): RedirectResponse|View
     {
+        // Redirect user dengan role admin ke dashboard (user dengan role admin tidak perlu verify email)
+        if($request->user()->role == 'admin'){
+            return redirect('/admin');
+        }
         return $request->user()->hasVerifiedEmail()
                     ? redirect()->intended(route('dashboard', absolute: false))
                     : view('auth.verify-email');
