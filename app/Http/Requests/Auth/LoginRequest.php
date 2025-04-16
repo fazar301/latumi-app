@@ -32,6 +32,14 @@ class LoginRequest extends FormRequest
         ];
     }
 
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'Masukkan email anda!',
+            'password.required' => 'Masukkan password anda!',
+        ];
+    }
+
     /**
      * Attempt to authenticate the request's credentials.
      *

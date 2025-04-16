@@ -6,7 +6,7 @@ use App\Http\Controllers\OauthController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front.home');
 });
 
 Route::get('/dashboard', function () {

@@ -37,8 +37,10 @@ class RegisteredUserController extends Controller
         ],
         [
             'name.required' => 'Masukkan nama anda!',
-            'email.unique' => 'Email yang anda masukkan sudah terdaftar',
             'noHP.required' => 'Masukkan Nomor HP anda!',
+            'email.required' => 'Masukkan email anda!',
+            'password.required' => 'Masukkan password anda!',
+            'email.unique' => 'Email yang anda masukkan sudah terdaftar',
             'noHP.unique' => 'Nomor HP sudah terdaftar',
             'password.confirmed' => 'Password tidak sama'
         ]);

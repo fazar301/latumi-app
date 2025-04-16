@@ -35,14 +35,14 @@
     <!--begin::Input group=-->
     <div class="fv-row mb-8">
         <!--begin::Email-->
-        <x-text-input type="email" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" id="email" :value="old('email')" />
+        <x-text-input type="email" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent pink-focus" id="email" :value="old('email')" />
         <x-input-error :messages="$errors->get('email')" class="mt-2" />
         <!--end::Email-->
     </div>
     <!--end::Input group=-->
     <div class="fv-row mb-3">
         <!--begin::Password-->
-        <x-text-input type="password" placeholder="Password" name="password" id="password" autocomplete="off" class="form-control bg-transparent" />
+        <x-text-input type="password" placeholder="Password" name="password" id="password" autocomplete="off" class="form-control bg-transparent pink-focus" />
         <x-input-error :messages="$errors->get('password')" class="mt-2" />
         <!--end::Password-->
     </div>
@@ -50,7 +50,7 @@
     <!--begin::Wrapper-->
     <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-20 mt-6">
         <div class="form-check d-flex align-items-center form-check-sm">
-            <input id="remember_me"  class="form-check-input me-3 !w-[18px] !h-[18px] border-4" type="checkbox" name="remember" />
+            <input id="remember_me"  class="form-check-input me-3 !w-[18px] !h-[18px] border-4 checked:!bg-pink-500 checked:!border-pink-500" type="checkbox" name="remember" />
             <label class="form-check-label" for="remember_me">
                 Ingat Saya
             </label>
@@ -58,7 +58,7 @@
         <div></div>
         <!--begin::Link-->
         @if (Route::has('password.request'))
-                <a class="link-primary" href="{{ route('password.request') }}">
+                <a class="text-pink-500" href="{{ route('password.request') }}">
                     {{ __('Lupa Password ?') }}
                 </a>
         @endif
@@ -68,7 +68,7 @@
     <!--end::Wrapper-->
     <!--begin::Submit button-->
     <div class="d-grid mb-10">
-        <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
+        <button type="submit" id="kt_sign_in_submit" class="btn !bg-pink-500 hover:!bg-pink-600 focus:!ring-4 focus:!ring-pink-300 text-white">
             <!--begin::Indicator label-->
             <span class="indicator-label">Login</span>
             <!--end::Indicator label-->
@@ -81,7 +81,7 @@
     <!--end::Submit button-->
     <!--begin::Sign up-->
     <div class="text-gray-500 text-center fw-semibold fs-6">Belum memiliki akun? 
-    <a href="register" class="link-primary">Register</a></div>
+    <a href="register" class="text-pink-500">Register</a></div>
     <!--end::Sign up-->
 </form>
 <!--end::Form-->

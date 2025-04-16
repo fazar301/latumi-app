@@ -13,8 +13,14 @@
                 <li>Minimal password 8 karakter!</li>
             @elseif($message == 'passwords.reset')
                 <li>Password berhasil diubah</li>
-            @elseif($message = 'passwords.user')
-                <li>Email tidak ditemukan!</li>
+            @elseif($message == 'validation.password.mixed')
+                <li>Password harus memiliki minimal 1 huruf besar</li>
+            @elseif($message == 'validation.password.numbers')
+                <li>Password harus memiliki minimal 1 angka</li>
+            @elseif($message == 'validation.password.symbols')
+                <li>Password harus memiliki simbol !@#$%^&*~</li>
+            {{-- @elseif($message = 'passwords.user')
+                <li>Email tidak ditemukan!</li> --}}
             @else
                 <li>{{ $message }}</li>
             @endif

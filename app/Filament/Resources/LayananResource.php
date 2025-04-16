@@ -29,7 +29,7 @@ class LayananResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('nama_layanan')->required()->unique()->validationMessages(['unique' => 'Nama Layanan Sudah Digunakan']),
+                TextInput::make('nama_layanan')->required(),
                 MoneyInput::make('harga_layanan')->decimals(0)->numeric()->required(),
                 Textarea::make('deskripsi')->required(),
                 // FileUpload::make('image')->image()

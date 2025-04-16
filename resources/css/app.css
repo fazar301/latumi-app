@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Add this custom CSS to override the default focus styles */
+.pink-focus:focus {
+    border-color: hsl(330, 81%, 60%) !important; /* Pink-500 */
+    box-shadow: 0 0 0 1px rgba(236, 72, 153, 0.25) !important;
+    outline: none !important;
+  }
+  
+  /* Or if you prefer a darker pink */
+  .pink-focus-dark:focus {
+    border-color: #db2777 !important; /* Pink-600 */
+    box-shadow: 0 0 0 1px rgba(219, 39, 119, 0.25) !important;
+    outline: none !important;
+  }
+  

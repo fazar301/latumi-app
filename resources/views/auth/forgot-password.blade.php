@@ -18,13 +18,13 @@
         <!--begin::Input group=-->
         <div class="fv-row mb-8">
             <!--begin::Email-->
-            <input type="email" :value="old('email')" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" />
+            <input type="email" :value="old('email')" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent pink-focus" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
             <!--end::Email-->
         </div>
         <!--begin::Actions-->
         <div class="d-flex flex-wrap justify-content-center pb-lg-0">
-            <button type="submit" id="kt_password_reset_submit" class="btn btn-primary me-4">
+            <button type="submit" id="kt_password_reset_submit" class="btn text-white !bg-pink-500 hover:!bg-pink-600 me-4 ">
                 <!--begin::Indicator label-->
                 <span class="indicator-label">Submit</span>
                 <!--end::Indicator label-->
