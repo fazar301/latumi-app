@@ -134,14 +134,14 @@
     {{-- Custom Javascript Buat Menambah karakter - otomatis ketika user input noHP --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-        const btnRegister = document.querySelector('#kt_sign_up_submit');
-        // Get password input and indicators
-        const passwordInput = document.getElementById('password');
-        const indicators = document.querySelectorAll('.password-indicator');
+            const btnRegister = document.querySelector('#kt_sign_up_submit');
+            // Get password input and indicators
+            const passwordInput = document.getElementById('password');
+            const indicators = document.querySelectorAll('.password-indicator');
         
         
-        // Password strength checker
-        passwordInput.addEventListener('input', function() {
+            // Password strength checker
+            passwordInput.addEventListener('input', function() {
             const password = this.value;
             let strength = 0;
             
@@ -190,8 +190,8 @@
                     btnRegister.disabled = false;
                 }
             }
+            });
         });
-    });
 
         const phoneInput = document.getElementById('phone-input');
       

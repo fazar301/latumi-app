@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\View\View;
 
+
 class PasswordResetLinkController extends Controller
 {
     /**
@@ -27,6 +28,9 @@ class PasswordResetLinkController extends Controller
     {
         $request->validate([
             'email' => ['required', 'email'],
+        ],
+        [
+            'email.required' => 'Masukkan email anda!',
         ]);
 
         // We will send the password reset link to this user. Once we have attempted
