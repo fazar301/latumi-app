@@ -1,10 +1,8 @@
-<?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLayanansTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -29,4 +27,4 @@ class CreateLayanansTable extends Migration
     {
         Schema::dropIfExists('layanans');
     }
-}
+}; 

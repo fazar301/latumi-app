@@ -2,23 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SesiResource\Pages;
-use App\Filament\Resources\SesiResource\RelationManagers;
-use App\Models\Sesi;
+use App\Filament\Resources\KategoriResource\Pages;
+use App\Filament\Resources\KategoriResource\RelationManagers;
+use App\Models\Kategori;
 use Filament\Forms;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class SesiResource extends Resource
+class KategoriResource extends Resource
 {
-    protected static ?string $model = Sesi::class;
+    protected static ?string $model = Kategori::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -26,7 +23,9 @@ class SesiResource extends Resource
     {
         return $form
             ->schema([
-                TimePicker::make('jam')->seconds(false),
+                Forms\Components\TextInput::make('nama_kategori')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -34,7 +33,16 @@ class SesiResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('jam'),
+                Tables\Columns\TextColumn::make('nama_kategori')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
@@ -60,9 +68,9 @@ class SesiResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSesis::route('/'),
-            'create' => Pages\CreateSesi::route('/create'),
-            'edit' => Pages\EditSesi::route('/{record}/edit'),
+            'index' => Pages\ListKategoris::route('/'),
+            'create' => Pages\CreateKategori::route('/create'),
+            'edit' => Pages\EditKategori::route('/{record}/edit'),
         ];
     }
 }

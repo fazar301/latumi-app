@@ -17,8 +17,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Pelmered\FilamentMoneyField\Tables\Columns\MoneyColumn;
 use App\Filament\Resources\LayananResource\RelationManagers;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Pelmered\FilamentMoneyField\Forms\Components\MoneyInput;
-
+use Filament\Tables\Columns\ImageColumn;
 class LayananResource extends Resource
 {
     protected static ?string $model = Layanan::class;
@@ -31,10 +32,20 @@ class LayananResource extends Resource
             ->schema([
                 TextInput::make('nama_layanan')->required(),
                 MoneyInput::make('harga_layanan')->decimals(0)->numeric()->required(),
+                Select::make('kategori_id')
+                    ->relationship('kategori', 'nama_kategori')
+                    ->required()
+                    ->label('Kategori'),
                 Textarea::make('deskripsi')->required(),
-                // FileUpload::make('image')->image()
+                FileUpload::make('image')
+                    ->image()
+                    ->maxSize(10000)
+                    ->required()
+                    ->visibility('public')
+                    ->disk('public')
+                    ->directory('layanan-images')
             ]);
-    }
+    } 
 
     public static function table(Table $table): Table
     {
@@ -42,7 +53,13 @@ class LayananResource extends Resource
             ->columns([
                 TextColumn::make('nama_layanan'),
                 MoneyColumn::make('harga_layanan')->decimals(0),
+                TextColumn::make('kategori.nama_kategori')
+                    ->label('Kategori'),
                 TextColumn::make('deskripsi')->limit(50),
+                ImageColumn::make('image')
+                    ->disk('public')
+                    ->square()
+                    ->height(50)
             ])
             ->filters([
                 //
