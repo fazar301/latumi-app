@@ -22,4 +22,9 @@ class Layanan extends Model
     {
         return $this->belongsTo(Kategori::class);
     }
+
+    public function paketLayanans()
+    {
+        return $this->belongsToMany(PaketLayanan::class, 'layanan_paket_layanan');
+    }
 }
