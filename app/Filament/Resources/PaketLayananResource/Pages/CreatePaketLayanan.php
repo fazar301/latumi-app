@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreatePaketLayanan extends CreateRecord
 {
     protected static string $resource = PaketLayananResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->previousUrl ?? $this->getResource()::getUrl('index');
+    }
 }

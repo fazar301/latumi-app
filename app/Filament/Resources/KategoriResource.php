@@ -12,6 +12,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Database\Eloquent\Collection;
+use Filament\Notifications\Notification;
 
 class KategoriResource extends Resource
 {
@@ -49,11 +51,50 @@ class KategoriResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->before(function (Tables\Actions\DeleteAction $action, Kategori $record) {
+                        // Check if kategori is used in layanan
+                        if ($record->layanans()->exists()) {
+                            Notification::make()
+                                ->title('Tidak Dapat Menghapus Kategori')
+                                ->body('Kategori ini sedang digunakan oleh satu atau lebih layanan. Silakan ubah kategori layanan tersebut terlebih dahulu.')
+                                ->danger()
+                                ->send();
+                            $action->cancel();
+                        }
+
+                        // Check if kategori is used in paket layanan
+                        if ($record->paketLayanans()->exists()) {
+                            Notification::make()
+                                ->title('Tidak Dapat Menghapus Kategori')
+                                ->body('Kategori ini sedang digunakan oleh satu atau lebih paket layanan. Silakan ubah kategori paket layanan tersebut terlebih dahulu.')
+                                ->danger()
+                                ->send();
+                            $action->cancel();
+                        }
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->before(function (Tables\Actions\DeleteBulkAction $action, Collection $records) {
+                            $usedKategoris = collect();
+                            
+                            foreach ($records as $record) {
+                                if ($record->layanans()->exists() || $record->paketLayanans()->exists()) {
+                                    $usedKategoris->push($record->nama_kategori);
+                                }
+                            }
+
+                            if ($usedKategoris->isNotEmpty()) {
+                                Notification::make()
+                                    ->title('Tidak Dapat Menghapus Kategori')
+                                    ->body('Kategori berikut sedang digunakan: ' . $usedKategoris->join(', ') . '. Silakan ubah kategori tersebut terlebih dahulu.')
+                                    ->danger()
+                                    ->send();
+                                $action->cancel();
+                            }
+                        }),
                 ]),
             ]);
     }

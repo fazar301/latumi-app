@@ -20,6 +20,9 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Pelmered\FilamentMoneyField\Forms\Components\MoneyInput;
 use Filament\Tables\Columns\ImageColumn;
+use Illuminate\Database\Eloquent\Collection;
+use Filament\Notifications\Notification;
+
 class LayananResource extends Resource
 {
     protected static ?string $model = Layanan::class;
@@ -66,11 +69,40 @@ class LayananResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->before(function (Tables\Actions\DeleteAction $action, Layanan $record) {
+                        // Check if layanan is used in paket layanan
+                        if ($record->paketLayanans()->exists()) {
+                            Notification::make()
+                                ->title('Tidak Dapat Menghapus Layanan')
+                                ->body('Layanan ini sedang digunakan oleh satu atau lebih paket layanan. Silakan hapus layanan ini dari paket layanan tersebut terlebih dahulu.')
+                                ->danger()
+                                ->send();
+                            $action->cancel();
+                        }
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->before(function (Tables\Actions\DeleteBulkAction $action, Collection $records) {
+                            $usedLayanans = collect();
+                            
+                            foreach ($records as $record) {
+                                if ($record->paketLayanans()->exists()) {
+                                    $usedLayanans->push($record->nama_layanan);
+                                }
+                            }
+
+                            if ($usedLayanans->isNotEmpty()) {
+                                Notification::make()
+                                    ->title('Tidak Dapat Menghapus Layanan')
+                                    ->body('Layanan berikut sedang digunakan dalam paket layanan: ' . $usedLayanans->join(', ') . '. Silakan hapus layanan tersebut dari paket layanan terlebih dahulu.')
+                                    ->danger()
+                                    ->send();
+                                $action->cancel();
+                            }
+                        }),
                 ]),
             ]);
     }
