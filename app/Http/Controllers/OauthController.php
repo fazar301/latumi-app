@@ -6,6 +6,7 @@ use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
 class OauthController extends Controller
@@ -38,10 +39,11 @@ class OauthController extends Controller
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
+                    'role' => 'customer',
                     'gauth_id'=> $user->id,
                     'gauth_type'=> 'google',
                     'email_verified_at' => now(),
-                    'password' => encrypt('admin@123')
+                    'password' => Hash::make('admin@123')
                 ]);
 
                 Auth::login($newUser);
