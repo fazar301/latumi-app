@@ -9,8 +9,7 @@
         scroll-behavior: smooth;
         }
     </style>
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
+    @vite('resources/css/app.css','resources/js/app.js')
     <script>
         tailwind.config = {
             theme: {
@@ -34,7 +33,7 @@
     <!-- Footer -->
     <x-footer></x-footer>
 
-    <!-- Flowbite JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    {{-- <!-- Flowbite JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script> --}}
 </body>
 </html>
