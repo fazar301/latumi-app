@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Database\Eloquent\Collection;
 use Filament\Notifications\Notification;
+use Illuminate\Database\Eloquent\Model;
 
 class KategoriResource extends Resource
 {
@@ -115,5 +116,27 @@ class KategoriResource extends Resource
             'create' => Pages\CreateKategori::route('/create'),
             'edit' => Pages\EditKategori::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withCount(['layanans', 'paketLayanans'])
+            ->orderBy('created_at', 'desc');
+    }
+
+    protected function handleRecordDeletion(Model $record): void
+    {
+        if ($record->layanans()->exists() || $record->paketLayanans()->exists()) {
+            Notification::make()
+                ->title('Tidak Dapat Menghapus Kategori')
+                ->body('Kategori ini sedang digunakan oleh layanan atau paket layanan. Silakan ubah kategori yang terkait terlebih dahulu.')
+                ->danger()
+                ->send();
+            
+            $this->halt();
+        }
+
+        parent::handleRecordDeletion($record);
     }
 }

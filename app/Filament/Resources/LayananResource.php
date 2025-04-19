@@ -22,6 +22,7 @@ use Pelmered\FilamentMoneyField\Forms\Components\MoneyInput;
 use Filament\Tables\Columns\ImageColumn;
 use Illuminate\Database\Eloquent\Collection;
 use Filament\Notifications\Notification;
+use Illuminate\Database\Eloquent\Model;
 
 class LayananResource extends Resource
 {
@@ -123,5 +124,27 @@ class LayananResource extends Resource
             'create' => Pages\CreateLayanan::route('/create'),
             'edit' => Pages\EditLayanan::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withCount(['paketLayanans'])
+            ->orderBy('created_at', 'desc');
+    }
+
+    protected function handleRecordDeletion(Model $record): void
+    {
+        if ($record->paketLayanans()->exists()) {
+            Notification::make()
+                ->title('Tidak Dapat Menghapus Layanan')
+                ->body('Layanan ini sedang digunakan dalam paket layanan. Silakan hapus layanan ini dari paket layanan terlebih dahulu.')
+                ->danger()
+                ->send();
+            
+            $this->halt();
+        }
+
+        parent::handleRecordDeletion($record);
     }
 }
