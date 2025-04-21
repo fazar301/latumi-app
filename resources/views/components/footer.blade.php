@@ -8,36 +8,36 @@
                     </svg>
                     <span class="text-xl font-bold">BabySpa</span>
                 </div>
-                <p class="text-sm text-gray-500">Providing gentle spa experiences for babies since 2018.</p>
+                <p class="text-sm text-gray-500">Menyediakan pengalaman spa lembut untuk bayi sejak 2018.</p>
             </div>
             <div>
-                <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Services</h3>
+                <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Layanan</h3>
                 <ul class="text-gray-500">
                     <li class="mb-4">
-                        <a href="#" class="hover:underline">Baby Massage</a>
+                        <a href="#" class="hover:underline">Pijat Bayi</a>
                     </li>
                     <li class="mb-4">
-                        <a href="#" class="hover:underline">Hydrotherapy</a>
+                        <a href="#" class="hover:underline">Hidroterapi</a>
                     </li>
                     <li class="mb-4">
-                        <a href="#" class="hover:underline">Floating Sessions</a>
+                        <a href="#" class="hover:underline">Sesi Mengambang</a>
                     </li>
                     <li>
-                        <a href="#" class="hover:underline">Parent Training</a>
+                        <a href="#" class="hover:underline">Pelatihan Orang Tua</a>
                     </li>
                 </ul>
             </div>
             <div>
-                <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Company</h3>
+                <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Perusahaan</h3>
                 <ul class="text-gray-500">
                     <li class="mb-4">
-                        <a href="#" class="hover:underline">About Us</a>
+                        <a href="#" class="hover:underline">Tentang Kami</a>
                     </li>
                     <li class="mb-4">
-                        <a href="#" class="hover:underline">Our Team</a>
+                        <a href="#" class="hover:underline">Tim Kami</a>
                     </li>
                     <li class="mb-4">
-                        <a href="#" class="hover:underline">Careers</a>
+                        <a href="#" class="hover:underline">Karir</a>
                     </li>
                     <li>
                         <a href="#" class="hover:underline">Blog</a>
@@ -45,24 +45,24 @@
                 </ul>
             </div>
             <div>
-                <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Contact</h3>
+                <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Kontak</h3>
                 <ul class="text-gray-500">
                     <li class="mb-4">
-                        <p>123 Serenity Lane</p>
+                        <p>Jalan Serenity 123</p>
                     </li>
                     <li class="mb-4">
-                        <p>Babyville, BV 12345</p>
+                        <p>Kota Bayi, BV 12345</p>
                     </li>
                     <li class="mb-4">
-                        <p>Phone: (555) 123-4567</p>
+                        <p>Telepon: (555) 123-4567</p>
                     </li>
                     <li>
-                        <p>Email: hello@babyspa.com</p>
+                        <p>Email: halo@babyspa.com</p>
                     </li>
                 </ul>
             </div>
         </div>
         <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
-        <p class="text-sm text-center text-gray-500">© {{ date('Y') }} BabySpa. All rights reserved.</p>
+        <p class="text-sm text-center text-gray-500">© {{ date('Y') }} BabySpa. Hak Cipta Dilindungi.</p>
     </div>
 </footer>
