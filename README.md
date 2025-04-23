@@ -44,8 +44,8 @@ DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=latumi
-DB_USERNAME=your_username
-DB_PASSWORD=your_password
+DB_USERNAME=root
+DB_PASSWORD=
 ```
 
 7. Run migrations:
@@ -55,15 +55,10 @@ php artisan migrate
 
 8. Start the development server:
 ```bash
-php artisan serve
+composer run dev
 ```
 
-9. In a new terminal, start Vite for frontend assets:
-```bash
-npm run dev
-```
-
-The application should now be running at `http://localhost:8000`
+The application should now be running at `http://127.0.0.1:8000`
 
 ## Features
 
