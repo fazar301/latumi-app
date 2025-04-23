@@ -80,7 +80,7 @@ php artisan serve
 npm run dev
 ```
 
-The application should now be running at `http://localhost:8000`
+The application should now be running at `http://127.0.0.1:8000`
 
 ## Features
 
