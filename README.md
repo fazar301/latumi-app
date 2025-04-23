@@ -23,7 +23,7 @@ A baby spa application built with Laravel.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/latumi-app.git
+git clone https://github.com/fazar301/latumi-app.git
 cd latumi-app
 ```
 
