@@ -3,13 +3,15 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OauthController;
+use App\Models\Layanan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
 
 Route::get('/', function () {
-    return view('front.home');
+    $layanans = Layanan::all();
+    return view('front.home', ['layanans' => $layanans]);
 });
 
 Route::get('/dashboard', function () {
